@@ -1,5 +1,5 @@
 resource "aws_eks_node_group" "managed_node_group" {
-  cluster_name    = "${var.cluster_name}-${var.environment}"
+  cluster_name    = var.cluster_name
   node_group_name = "${var.node_group_name}-${var.environment}"
   node_role_arn   = aws_iam_role.eks_node_role.arn
   subnet_ids      = var.subnet_ids
@@ -63,7 +63,7 @@ resource "aws_eks_addon" "this" {
   # Not supported on outposts
   for_each = { for k, v in var.cluster_addons : k => v }
 
-  cluster_name = "${var.cluster_name}-${var.environment}"
+  cluster_name = var.cluster_name
   addon_name   = try(each.value.name, each.key)
 
   addon_version               = coalesce(try(each.value.addon_version, null), data.aws_eks_addon_version.this[each.key].version)

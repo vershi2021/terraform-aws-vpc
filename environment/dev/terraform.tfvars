@@ -1,6 +1,6 @@
 aws_region  = "us-east-1"
 environment = "dev"
-project     = "fonka"
+project     = "SelfServiceModel1"
 vpc = {
   name                   = "dev_vpc"
   azs                    = ["us-east-1a", "us-east-1b"]
@@ -15,13 +15,13 @@ vpc = {
 }
 
 eks = {
-  cluster_name       = "eks-cluster"
+  cluster_name       = "SelfService_Cluster_eks"
   kubernetes_version = "1.31"
 }
 
 eks_managed_node_groups = {
   node-group = {
-    cluster_name            = "eks-cluster"
+    cluster_name            = "SelfService_Cluster_eks"
     node_group_name         = "node-group"
     node_group_desired_size = 3
     node_group_min_size     = 1
